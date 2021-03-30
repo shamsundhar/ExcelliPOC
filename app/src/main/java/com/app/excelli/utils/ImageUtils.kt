@@ -13,8 +13,8 @@ object ImageUtils {
     private val BLUR_RADIUS = 7.5f
 
     fun blur(image: Bitmap, mContext: Context?): Bitmap? {
-        val width = Math.round(image.width * BITMAP_SCALE).toInt()
-        val height = Math.round(image.height * BITMAP_SCALE).toInt()
+        val width = Math.round(image.width * BITMAP_SCALE)
+        val height = Math.round(image.height * BITMAP_SCALE)
         val inputBitmap = Bitmap.createScaledBitmap(image, width, height, false)
         val outputBitmap = Bitmap.createBitmap(inputBitmap)
         val rs = RenderScript.create(mContext)

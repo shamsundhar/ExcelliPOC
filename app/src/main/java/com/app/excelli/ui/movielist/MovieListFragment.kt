@@ -51,7 +51,7 @@ class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
         viewModel = ViewModelProvider(this, factory).get(MovieListViewModel::class.java)
 
 
-        adapter = context?.let { MovieListAdapter(ArrayList<Search>(), it) }!!
+        adapter = context?.let { MovieListAdapter(ArrayList(), it) }!!
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.setHasFixedSize(true)
@@ -105,12 +105,12 @@ class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
     }
 
     private fun openMovieInfo(movieID: String) {
-        val MovieInfoFragment =
+        val movieInfoFragment =
             MovieInfoFragment.newInstance(movieID)
         val mainActivity: MainActivity = context as MainActivity
         mainActivity.supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container, MovieInfoFragment, MOVIE_INFO_TAG)
+            .replace(R.id.container, movieInfoFragment, MOVIE_INFO_TAG)
             .addToBackStack(MOVIE_INFO_TAG)
             .commit()
     }

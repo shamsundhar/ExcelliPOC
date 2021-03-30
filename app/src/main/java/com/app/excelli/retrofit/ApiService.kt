@@ -13,13 +13,13 @@ interface ApiService {
 
     @GET(".")
     fun searchMovies(
-        @Query(QUERY_KEY_PARAM_API_KEY) apikey: String,
+        @Query(QUERY_KEY_PARAM_API_KEY) apiKey: String,
         @Query(QUERY_KEY_PARAM_S) s: String,
     ): Observable<MovieListResponse>
 
     @GET(".")
     fun getMovieInfoByID(
-        @Query(QUERY_KEY_PARAM_API_KEY) apikey: String,
+        @Query(QUERY_KEY_PARAM_API_KEY) apiKey: String,
         @Query(QUERY_KEY_PARAM_I) i: String,
     ): Observable<MovieInfoResponse>
 

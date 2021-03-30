@@ -16,8 +16,8 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 
 
-private var _binding: FragmentMovieInfoBinding? = null
-private val binding get() = _binding!!
+private var mbinding: FragmentMovieInfoBinding? = null
+private val binding get() = mbinding!!
 
 class MovieInfoFragment : Fragment(), MovieInfoViewModel.MovieInfoListener {
 
@@ -39,7 +39,7 @@ class MovieInfoFragment : Fragment(), MovieInfoViewModel.MovieInfoListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMovieInfoBinding.inflate(inflater, container, false)
+        mbinding = FragmentMovieInfoBinding.inflate(inflater, container, false)
         val view = binding.root
 
         val factory = MovieInfoViewModelFactory(
@@ -55,7 +55,7 @@ class MovieInfoFragment : Fragment(), MovieInfoViewModel.MovieInfoListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        mbinding = null
     }
 
     private fun updateBackgroundImage(url: String) {
@@ -75,16 +75,16 @@ class MovieInfoFragment : Fragment(), MovieInfoViewModel.MovieInfoListener {
             })
     }
 
-    override fun updateMovieInfo(movieInfoData: MovieInfoResponse?) {
-        if (movieInfoData != null) {
+    override fun updateMovieInfo(movieInfoResponse: MovieInfoResponse?) {
+        if (movieInfoResponse != null) {
             Picasso.with(context)
-                .load(movieInfoData.poster)
+                .load(movieInfoResponse.poster)
                 .into(binding.moviePoster)
 
-            binding.mvTitle1.text = movieInfoData.title
-            binding.description.text = movieInfoData.plot
-            binding.rating.text = movieInfoData.ratings[0].value
-            updateBackgroundImage(movieInfoData.poster)
+            binding.mvTitle1.text = movieInfoResponse.title
+            binding.description.text = movieInfoResponse.plot
+            binding.rating.text = movieInfoResponse.ratings[0].value
+            updateBackgroundImage(movieInfoResponse.poster)
         }
     }
 

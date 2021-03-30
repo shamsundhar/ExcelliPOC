@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ServiceFactory {
+    private val TAG = "ServiceFactory"
     fun provideApi(): ApiService {
         return provideRetrofit(BASE_URL).create(ApiService::class.java)
     }
@@ -39,7 +40,7 @@ class ServiceFactory {
         val httpLoggingInterceptor =
             HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
                 Log.d(
-                    "Injector",
+                    TAG,
                     message
                 )
             })

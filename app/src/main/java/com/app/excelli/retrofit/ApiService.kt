@@ -2,6 +2,9 @@ package com.app.excelli.retrofit
 
 import MovieInfoResponse
 import MovieListResponse
+import com.app.excelli.ui.common.Constants.Companion.QUERY_KEY_PARAM_API_KEY
+import com.app.excelli.ui.common.Constants.Companion.QUERY_KEY_PARAM_I
+import com.app.excelli.ui.common.Constants.Companion.QUERY_KEY_PARAM_S
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,14 +13,14 @@ interface ApiService {
 
     @GET(".")
     fun searchMovies(
-        @Query("apikey") apikey: String,
-        @Query("s") s: String,
+        @Query(QUERY_KEY_PARAM_API_KEY) apikey: String,
+        @Query(QUERY_KEY_PARAM_S) s: String,
     ): Observable<MovieListResponse>
 
     @GET(".")
     fun getMovieInfoByID(
-        @Query("apikey") apikey: String,
-        @Query("i") i: String,
+        @Query(QUERY_KEY_PARAM_API_KEY) apikey: String,
+        @Query(QUERY_KEY_PARAM_I) i: String,
     ): Observable<MovieInfoResponse>
 
 }

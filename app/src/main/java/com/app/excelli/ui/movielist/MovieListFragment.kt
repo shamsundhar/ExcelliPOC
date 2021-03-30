@@ -20,6 +20,7 @@ import com.app.excelli.ui.movielist.MovieListViewModelFactory
 
 
 class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
+    private val MOVIE_INFO_TAG = "MovieInfoFragment"
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
 
@@ -91,7 +92,7 @@ class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
                 if (binding2.searchTv.text == null || binding2.searchTv.text.toString()
                         .equals("", ignoreCase = true)
                 ) {
-                    Toast.makeText(context, "Search cannot be empty", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.text_search_empty), Toast.LENGTH_SHORT).show()
                 } else {
                     dialog.dismiss()
                     viewModel.loadMoviesList(API_KEY, binding2.searchTv.text.toString())
@@ -109,8 +110,8 @@ class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
         val mainActivity: MainActivity = context as MainActivity
         mainActivity.supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container, MovieInfoFragment, "MovieInfoFragment")
-            .addToBackStack("MovieInfoFragment")
+            .replace(R.id.container, MovieInfoFragment, MOVIE_INFO_TAG)
+            .addToBackStack(MOVIE_INFO_TAG)
             .commit()
     }
 

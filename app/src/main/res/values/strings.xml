@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Excelli</string>
+    <string name="text_search_empty">Search cannot be empty</string>
 </resources>

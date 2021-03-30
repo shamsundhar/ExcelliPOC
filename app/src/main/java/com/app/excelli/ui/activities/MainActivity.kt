@@ -11,7 +11,7 @@ import com.app.excelli.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-
+    private val TAG = "MovieListFragment"
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             MovieListFragment.newInstance()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container, topRatedMoviesFragment, "MovieListFragment")
+            .replace(R.id.container, topRatedMoviesFragment, TAG)
             .commit()
     }
 

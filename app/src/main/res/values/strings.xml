@@ -5,4 +5,5 @@
     <string name="text_search">Search</string>
     <string name="text_rate_movie">Rate Movie</string>
     <string name="text_movies_list">Movies List</string>
+    <string name="text_loading">Loading...</string>
 </resources>

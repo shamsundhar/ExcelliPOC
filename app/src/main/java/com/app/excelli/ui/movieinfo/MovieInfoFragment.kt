@@ -1,17 +1,19 @@
+import android.app.AlertDialog
+import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.app.excelli.R
 import com.app.excelli.databinding.FragmentMovieInfoBinding
 import com.app.excelli.ui.common.Constants
 import com.app.excelli.ui.movieinfo.MovieInfoViewModel
 import com.app.excelli.ui.movieinfo.MovieInfoViewModelFactory
 import com.app.excelli.utils.ImageUtils
+import com.app.excelli.utils.ProgressDialog
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
 
@@ -22,6 +24,7 @@ private val binding get() = mbinding!!
 class MovieInfoFragment : Fragment(), MovieInfoViewModel.MovieInfoListener {
 
     private lateinit var viewModel: MovieInfoViewModel
+    private lateinit var dialog: Dialog
 
     companion object {
 
@@ -42,6 +45,8 @@ class MovieInfoFragment : Fragment(), MovieInfoViewModel.MovieInfoListener {
         mbinding = FragmentMovieInfoBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        dialog = ProgressDialog.progressDialog(context)
+
         val factory = MovieInfoViewModelFactory(
             arguments!!,
             this
@@ -56,6 +61,14 @@ class MovieInfoFragment : Fragment(), MovieInfoViewModel.MovieInfoListener {
     override fun onDestroyView() {
         super.onDestroyView()
         mbinding = null
+    }
+
+    override fun displayLoading(){
+        dialog.show()
+    }
+
+    override fun hideLoading(){
+        dialog.hide()
     }
 
     private fun updateBackgroundImage(url: String) {

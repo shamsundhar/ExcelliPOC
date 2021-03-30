@@ -17,15 +17,16 @@ import com.app.excelli.ui.activities.MainActivity
 import com.app.excelli.ui.common.Constants.Companion.API_KEY
 import com.app.excelli.ui.movielist.MovieListViewModel
 import com.app.excelli.ui.movielist.MovieListViewModelFactory
+import com.app.excelli.utils.ProgressDialog
 
 
 class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
     private val MOVIE_INFO_TAG = "MovieInfoFragment"
-    private var _binding: FragmentMoviesListBinding? = null
-    private val binding get() = _binding!!
+    private var mbinding: FragmentMoviesListBinding? = null
+    private val binding get() = mbinding!!
 
     private lateinit var viewModel: MovieListViewModel
-
+    private lateinit var dialog: Dialog
     private lateinit var adapter: MovieListAdapter
 
     companion object {
@@ -43,8 +44,9 @@ class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
+        mbinding = FragmentMoviesListBinding.inflate(inflater, container, false)
         val view = binding.root
+        dialog = ProgressDialog.progressDialog(context)
         val factory = MovieListViewModelFactory(
             this
         )
@@ -77,7 +79,15 @@ class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        mbinding = null
+    }
+
+    override fun displayLoading(){
+        dialog.show()
+    }
+
+    override fun hideLoading(){
+        dialog.hide()
     }
 
     private fun openSearchDialog() {

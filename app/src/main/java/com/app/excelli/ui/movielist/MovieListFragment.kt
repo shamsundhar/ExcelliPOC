@@ -82,11 +82,11 @@ class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
         mbinding = null
     }
 
-    override fun displayLoading(){
+    override fun displayLoading() {
         dialog.show()
     }
 
-    override fun hideLoading(){
+    override fun hideLoading() {
         dialog.hide()
     }
 
@@ -102,7 +102,11 @@ class MovieListFragment : Fragment(), MovieListViewModel.MovieListener {
                 if (binding2.searchTv.text == null || binding2.searchTv.text.toString()
                         .equals("", ignoreCase = true)
                 ) {
-                    Toast.makeText(context, getString(R.string.text_search_empty), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.text_search_empty),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     dialog.dismiss()
                     viewModel.loadMoviesList(API_KEY, binding2.searchTv.text.toString())

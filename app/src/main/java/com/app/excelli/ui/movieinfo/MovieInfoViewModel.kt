@@ -7,7 +7,7 @@ import com.app.excelli.ui.base.BaseViewModel
 import com.app.excelli.ui.common.Constants
 import com.app.excelli.ui.common.Constants.Companion.API_KEY
 
-class MovieInfoViewModel(val args: Bundle, var movieInfoListener: MovieInfoListener) :
+class MovieInfoViewModel(private val args: Bundle, private var movieInfoListener: MovieInfoListener) :
     BaseViewModel(), MovieInfoRepository.DataListener {
     interface MovieInfoListener {
         fun updateMovieInfo(movieInfoResponse: MovieInfoResponse?)
@@ -23,7 +23,9 @@ class MovieInfoViewModel(val args: Bundle, var movieInfoListener: MovieInfoListe
         movieInfoRepository.getMovieInfo(API_KEY, movieId)
     }
 
-    override fun onError(message: String) {movieInfoListener.hideLoading()}
+    override fun onError(message: String) {
+        movieInfoListener.hideLoading()
+    }
 
     override fun onMovieInfoSuccess(movieInfoResponse: MovieInfoResponse) {
         movieInfoListener.hideLoading()

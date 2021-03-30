@@ -4,7 +4,7 @@ import MovieListResponse
 import com.app.excelli.domain.repository.MovieListRepository
 import com.app.excelli.ui.base.BaseViewModel
 
-class MovieListViewModel(var movieListener: MovieListener) : BaseViewModel(),
+class MovieListViewModel(private var movieListener: MovieListener) : BaseViewModel(),
     MovieListRepository.DataListener {
     interface MovieListener {
         fun updateMoviesList(movieListResponse: MovieListResponse)

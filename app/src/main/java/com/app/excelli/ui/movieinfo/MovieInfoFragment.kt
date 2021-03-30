@@ -1,13 +1,13 @@
-import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.app.excelli.R
 import com.app.excelli.databinding.FragmentMovieInfoBinding
 import com.app.excelli.ui.common.Constants
 import com.app.excelli.ui.movieinfo.MovieInfoViewModel
@@ -63,11 +63,11 @@ class MovieInfoFragment : Fragment(), MovieInfoViewModel.MovieInfoListener {
         mbinding = null
     }
 
-    override fun displayLoading(){
+    override fun displayLoading() {
         dialog.show()
     }
 
-    override fun hideLoading(){
+    override fun hideLoading() {
         dialog.hide()
     }
 

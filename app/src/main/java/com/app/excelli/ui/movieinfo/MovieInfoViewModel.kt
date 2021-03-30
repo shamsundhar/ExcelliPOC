@@ -7,7 +7,10 @@ import com.app.excelli.ui.base.BaseViewModel
 import com.app.excelli.ui.common.Constants
 import com.app.excelli.ui.common.Constants.Companion.API_KEY
 
-class MovieInfoViewModel(private val args: Bundle, private var movieInfoListener: MovieInfoListener) :
+class MovieInfoViewModel(
+    private val args: Bundle,
+    private var movieInfoListener: MovieInfoListener
+) :
     BaseViewModel(), MovieInfoRepository.DataListener {
     interface MovieInfoListener {
         fun updateMovieInfo(movieInfoResponse: MovieInfoResponse?)
